@@ -1,7 +1,6 @@
 import numpy as np
 from collections import defaultdict
 
-
 class Author:
     
     def __init__(self, data):

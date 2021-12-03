@@ -10,10 +10,10 @@ NSTRATEGY=16
 START_YEAR=2018
 END_YEAR=2019
 
-C_BATCHSIZE=12000
-A_BATCHSIZE=6000
-MAX_NROUND=300
-MIN_NROUND=100
+C_BATCHSIZE=12
+A_BATCHSIZE=6
+MAX_NROUND=3
+MIN_NROUND=1
 
 mkdir ${FPATH}/run # the directory to store training logs
 mkdir ${FPATH}/${STRATEGY}_result # the directory to store training outputs

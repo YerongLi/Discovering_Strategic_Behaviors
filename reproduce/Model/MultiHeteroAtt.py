@@ -35,11 +35,11 @@ def run(year, rank, world_size, args):
     t = train(trainer, rank, args)
     if rank==0: logging.info('Finish Training, Time {}s'.format(t))
     
-    if rank==0: 
-        logging.info('Save Results')
-        save(trainer, year, args)
-        logging.info('Finish Year {}'.format(year))
-        logging.info('')
+    # if rank==0: 
+    #     logging.info('Save Results')
+    #     save(trainer, year, args)
+    #     logging.info('Finish Year {}'.format(year))
+    #     logging.info('')
         
 
 def init_process(rank, year, args):

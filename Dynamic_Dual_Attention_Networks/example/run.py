@@ -40,7 +40,7 @@ def init_process(rank, size, fn, backend='gloo'):
 
 
 if __name__ == "__main__":
-    size = 3
+    size = 2
     processes = []
     mp.set_start_method("spawn")
     for rank in range(size):

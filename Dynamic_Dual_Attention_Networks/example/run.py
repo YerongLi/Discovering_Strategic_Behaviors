@@ -16,6 +16,7 @@ def run(rank, size):
     else:
         # Receive tensor from process 0
         dist.recv(tensor=tensor, src=0)
+        tensor += 1
     print('Rank ', rank, ' has data ', tensor[0])
 
 def init_process(rank, size, fn, backend='gloo'):

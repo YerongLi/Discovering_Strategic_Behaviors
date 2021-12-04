@@ -25,10 +25,11 @@ class DBLPDataset:
         
         c_active, c_position, ca_adj, c_emb, c_edgellh = pickle.load(open(f'{self.path}/{self.strategy}_input/c_{self.strategy}_inputs_{self.year}.pkl', 'rb'))        
         c_active = c_active[:LIMIT_DATA]
-        print(type(c_position))
-        sys.exit(1)
+        print(c_position.keys())
         c_position = c_position[:LIMIT_DATA]
         c_emb = c_emb[:LIMIT_DATA]
+        sys.exit(1)
+
         c_edgellh = c_edgellh[:LIMIT_DATA]
         print(tokgreen('lengths'))
         print(len(c_active), len(c_position), len(ca_adj), len(c_emb), len(c_edgellh))

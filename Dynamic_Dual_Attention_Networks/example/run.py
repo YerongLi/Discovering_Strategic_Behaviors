@@ -12,9 +12,11 @@ def run(rank, size):
     if rank == 0:
         tensor += 1
         # Send the tensor to process 1
+        print('Rank 0 started sending')
         dist.send(tensor=tensor, dst=1)
     else:
         # Receive tensor from process 0
+        print('Rank 1 started receiving')
         dist.recv(tensor=tensor, src=0)
         tensor += 1
     print('Rank ', rank, ' has data ', tensor[0])

@@ -5,10 +5,18 @@ import torch
 import torch.distributed as dist
 import torch.multiprocessing as mp
 
+"""Blocking point-to-point communication."""
+
 def run(rank, size):
-    """ Distributed function to be implemented later. """
-    print('Entering run')
-    pass
+    tensor = torch.zeros(1)
+    if rank == 0:
+        tensor += 1
+        # Send the tensor to process 1
+        dist.send(tensor=tensor, dst=1)
+    else:
+        # Receive tensor from process 0
+        dist.recv(tensor=tensor, src=0)
+    print('Rank ', rank, ' has data ', tensor[0])
 
 def init_process(rank, size, fn, backend='gloo'):
     """ Initialize the distributed environment. """

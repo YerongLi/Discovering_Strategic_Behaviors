@@ -7,6 +7,7 @@ import torch.multiprocessing as mp
 
 def run(rank, size):
     """ Distributed function to be implemented later. """
+    print('Entering run')
     pass
 
 def init_process(rank, size, fn, backend='gloo'):

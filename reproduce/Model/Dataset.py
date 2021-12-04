@@ -101,12 +101,6 @@ class DBLPDataset:
             
             if batch_num%self.worldsize!=self.rank: continue
             self.ca_unique_positions.append([c_unique_position, a_unique_position])
-            print(tokgreen('c_emb'))
-            print(len(c_emb))
-            print(max(c_unique_position))
-            print(tokgreen('a_emb'))
-            print(len(a_emb))
-            print(max(a_unique_position))
             batch_c_emb, batch_a_emb = torch.from_numpy(c_emb[c_unique_position]).float().to(self.device), torch.from_numpy(a_emb[a_unique_position]).float().to(self.device)
             batch_a_dist = self.a_dist[a_unique_position]
             batch_trans_adj = np.array([[np.argwhere(c_unique==c)[0,0] for c in batch_adj[0]], \

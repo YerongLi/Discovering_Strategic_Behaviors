@@ -17,7 +17,21 @@ training_nlls = {'c_model':[], 'a_model':[]}
 
 
 def train(trainer, rank, args):
+    if rank==0:
+        logging.info('--------------------------------------')
+        logging.info("Content Batches {}, Author Batches {}".format(len(trainer.dataset.c_batches), len(trainer.dataset.a_batches)))
     
+    t = time.time()
+    curr_closs_sum, prev_closs_sum, curr_aloss_sum, prev_aloss_sum = 0, 0, 0, 0
+    
+    # for i in range(1, args.max_nround+1):
+    for i in range(1, 2):
+        
+        ###############################################
+        
+        prev_closs_sum = curr_closs_sum
+        curr_closs_sum = 0
+        trainer.__train_C__()
     pass
     
 def run(year, rank, world_size, args):

@@ -30,3 +30,23 @@ class Trainer:
     def __prepare__(self, c_batchsize, a_batchsize):
         print
         self.dataset.__read__(c_batchsize, a_batchsize)
+
+    def __train_C__(self):
+        
+        self.c_model.train()        
+        self.curr_closs_sum[0] = 0
+        self.new_c_dists, self.batch_atts = [], []
+        
+        for batch_num, batch in enumerate(self.dataset.c_inputs):
+            
+            new_c_dist, batch_att = self.c_model(batch)
+            self.new_c_dists.append(new_c_dist)
+            self.batch_atts.append(batch_att)
+            
+            c_loss = self.__loss__(self.dataset.c_edgeinfos[batch_num][0], new_c_dist, self.dataset.c_edgeinfos[batch_num][1])
+            c_loss.backward()
+            self.curr_closs_sum += (c_loss.detach()*np.sum(self.dataset.c_edgeinfos[batch_num][0]))
+            
+        self.new_c_dists, self.batch_atts = torch.cat(self.new_c_dists), torch.cat(self.batch_atts)
+        self.new_c_dists = torch.cat([self.new_c_dists, torch.zeros(self.dataset.c_max_len-len(self.new_c_dists), self.nstrategy).float().to(self.device)])
+        self.batch_atts = torch.cat([self.batch_atts, torch.zeros(self.dataset.ca_max_len-len(self.batch_atts)).float().to(self.device)])

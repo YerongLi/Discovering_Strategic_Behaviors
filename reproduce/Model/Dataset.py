@@ -27,16 +27,21 @@ class DBLPDataset:
         c_active = c_active[:LIMIT_DATA]
         # print(c_position.keys())
         # c_position = c_position[:LIMIT_DATA]
+        ca_adj = ca_adj[:LIMIT_DATA]
         c_emb = c_emb[:LIMIT_DATA]
-        # sys.exit(1)
-
         c_edgellh = c_edgellh[:LIMIT_DATA]
-        print(tokgreen('lengths'))
+        print(tokgreen('c lengths'))
         print(len(c_active), len(c_position), len(ca_adj), len(c_emb), len(c_edgellh))
         c_edgecount = np.array([len(edge) for edge in c_edgellh])
         c_edgellh = np.array([each/sum(each) for edgellh in c_edgellh for each in edgellh]).T
         
         a_active, a_position, ac_adj, a_emb, da_emb, a_edgellh = pickle.load(open(f'{self.path}/{self.strategy}_input/a_{self.strategy}_inputs_{self.year}.pkl', 'rb'))
+        
+        a_active = a_active[:LIMIT_DATA]
+        a_emb = a_emb[:LIMIT_DATA]
+        da_emb = da_emb[:LIMIT_DATA]
+        a_edgellh = a_edgellh[:LIMIT_DATA]
+        
         a_edgecount = np.array([len(edge) for edge in a_edgellh])
         a_edgellh = np.array([each/sum(each) for edgellh in a_edgellh for each in edgellh]).T
         
@@ -107,7 +112,9 @@ class DBLPDataset:
             
             if batch_num%self.worldsize!=self.rank: continue
             self.ca_unique_positions.append([c_unique_position, a_unique_position])
-            
+            print(tokgreen('c_emb'))
+            print(len(c_emb))
+            print(max(c_unique_position))
             batch_c_emb, batch_a_emb = torch.from_numpy(c_emb[c_unique_position]).float().to(self.device), torch.from_numpy(a_emb[a_unique_position]).float().to(self.device)
             batch_a_dist = self.a_dist[a_unique_position]
             batch_trans_adj = np.array([[np.argwhere(c_unique==c)[0,0] for c in batch_adj[0]], \

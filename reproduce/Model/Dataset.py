@@ -1,7 +1,7 @@
 import math
 import pickle
 import numpy as np
-
+from .utils import *
 import torch
 
 
@@ -23,6 +23,8 @@ class DBLPDataset:
     def __read__(self, c_batchsize, a_batchsize):
         
         c_active, c_position, ca_adj, c_emb, c_edgellh = pickle.load(open(f'{self.path}/{self.strategy}_input/c_{self.strategy}_inputs_{self.year}.pkl', 'rb'))        
+        print(tokgreen('lengths'))
+        print(len(c_active), len(c_position), len(ca_adj), len(c_emb), len(c_edgellh))
         c_edgecount = np.array([len(edge) for edge in c_edgellh])
         c_edgellh = np.array([each/sum(each) for edgellh in c_edgellh for each in edgellh]).T
         

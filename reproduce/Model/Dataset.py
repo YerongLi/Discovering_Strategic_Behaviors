@@ -27,7 +27,7 @@ class DBLPDataset:
         c_active = c_active[:LIMIT_DATA]
         # print(c_position.keys())
         # c_position = c_position[:LIMIT_DATA]
-        ca_adj = ca_adj[:LIMIT_DATA]
+        ca_adj = [i for i in ca_adj if i[0] < LIMIT_DATA and i[1] < LIMIT_DATA]
         c_emb = c_emb[:LIMIT_DATA]
         c_edgellh = c_edgellh[:LIMIT_DATA]
         print(tokgreen('c lengths'))
@@ -38,7 +38,7 @@ class DBLPDataset:
         a_active, a_position, ac_adj, a_emb, da_emb, a_edgellh = pickle.load(open(f'{self.path}/{self.strategy}_input/a_{self.strategy}_inputs_{self.year}.pkl', 'rb'))
         
         a_active = a_active[:LIMIT_DATA]
-        ac_adj = ac_adj[:LIMIT_DATA]
+        ac_adj = [i for i in ac_adj if i[0] < LIMIT_DATA and i[1] < LIMIT_DATA]
         a_emb = a_emb[:LIMIT_DATA]
         da_emb = da_emb[:LIMIT_DATA]
         a_edgellh = a_edgellh[:LIMIT_DATA]

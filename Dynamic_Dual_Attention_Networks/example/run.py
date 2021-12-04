@@ -14,6 +14,8 @@ def run(rank, size):
         # Send the tensor to process 1
         print('Rank 0 started sending')
         dist.send(tensor=tensor, dst=1)
+        tensor -=2
+        dist.send(tensor=tensor, dst=2)
     elif rank == 1:
         # Receive tensor from process 0
         print('Rank 1 started receiving')

@@ -1,7 +1,7 @@
 import math
 import pickle
 import numpy as np
-from .utils import *
+from utils import *
 import torch
 import sys # DEBUG
 

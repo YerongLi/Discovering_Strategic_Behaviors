@@ -4,8 +4,8 @@ import numpy as np
 from utils import *
 import torch
 import sys # DEBUG
+import tqdm
 
-LIMIT_DATA = 1000
 class DBLPDataset:
     
     
@@ -24,28 +24,16 @@ class DBLPDataset:
     def __read__(self, c_batchsize, a_batchsize):
         
         c_active, c_position, ca_adj, c_emb, c_edgellh = pickle.load(open(f'{self.path}/{self.strategy}_input/c_{self.strategy}_inputs_{self.year}.pkl', 'rb'))        
-        c_active = c_active[:LIMIT_DATA]
-        # print(c_position.keys())
-        # c_position = c_position[:LIMIT_DATA]
-        ca_adj = [i for i in ca_adj if i[0] < LIMIT_DATA and i[1] < LIMIT_DATA]
-        c_emb = c_emb[:LIMIT_DATA]
-        c_edgellh = c_edgellh[:LIMIT_DATA]
-        print(tokgreen('c lengths'))
-        print(len(c_active), len(c_position), len(ca_adj), len(c_emb), len(c_edgellh))
         c_edgecount = np.array([len(edge) for edge in c_edgellh])
         c_edgellh = np.array([each/sum(each) for edgellh in c_edgellh for each in edgellh]).T
         
         a_active, a_position, ac_adj, a_emb, da_emb, a_edgellh = pickle.load(open(f'{self.path}/{self.strategy}_input/a_{self.strategy}_inputs_{self.year}.pkl', 'rb'))
         
-        a_active = a_active[:LIMIT_DATA]
-        ac_adj = [i for i in ac_adj if i[0] < LIMIT_DATA and i[1] < LIMIT_DATA]
-        a_emb = a_emb[:LIMIT_DATA]
-        da_emb = da_emb[:LIMIT_DATA]
-        a_edgellh = a_edgellh[:LIMIT_DATA]
-        
         a_edgecount = np.array([len(edge) for edge in a_edgellh])
         a_edgellh = np.array([each/sum(each) for edgellh in a_edgellh for each in edgellh]).T
         
+        # limit the edges
+
         self.a_active = a_active
         self.a_position = a_position
         self.a_latest_dists = pickle.load(open(f'{self.path}/{self.strategy}_input/a_latest_{self.strategy}_dists_{self.year-1}.pkl','rb'))
@@ -102,7 +90,7 @@ class DBLPDataset:
         self.ca_all_positions, self.ac_all_positions = [], []
         self.c_gather_split_infos, self.a_gather_split_infos = [[0,0] for _ in range(self.worldsize)], [[0,0] for _ in range(self.worldsize)]
     
-        for batch_num, (start_pos, end_pos) in enumerate(self.c_batches):
+        for batch_num, (start_pos, end_pos) in tqdm.tqdm(enumerate(self.c_batches)):
             
             batch_adj = ca_adj[:,start_pos:end_pos]        
             c_unique, a_unique = np.sort(list(set(batch_adj[0]))), np.sort(list(set(batch_adj[1])))

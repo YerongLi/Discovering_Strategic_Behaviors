@@ -28,7 +28,7 @@ class DBLPDataset:
         print(c_position.keys())
         c_position = c_position[:LIMIT_DATA]
         c_emb = c_emb[:LIMIT_DATA]
-        sys.exit(1)
+        # sys.exit(1)
 
         c_edgellh = c_edgellh[:LIMIT_DATA]
         print(tokgreen('lengths'))

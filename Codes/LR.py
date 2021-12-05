@@ -40,7 +40,8 @@ def LR(stra):
         a_active, a_position, ac_adj, a_emb, da_emb, a_edgellh = pickle.load(open(f'{os.getenv("HOME")}/yerong/Discovering_Strategic_Behaviors/Dynamic_Dual_Attention_Networks/cite_input/a_cite_inputs_2018.pkl','rb'))
         exp_input = zip(a_active, a_edgellh)      
         results = {}
-        for author, llhs in exp_input.items():
+        # for author, llhs in exp_input.items():
+        for author, llhs in exp_input:
                 
             X = torch.from_numpy(llhs/np.sum(llhs,axis=1).reshape(-1,1)).float().to('cpu')
             y = torch.from_numpy(np.ones(len(llhs))).float().to('cpu')

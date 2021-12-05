@@ -27,7 +27,7 @@ class LogisticRegression(nn.Module):
         
         output = self.forward(X)
         print(tokblue('X y'))
-        print(X)
+        print(output.squeeze())
         print(y)
         return self.BCELoss(output.squeeze(), y)
     

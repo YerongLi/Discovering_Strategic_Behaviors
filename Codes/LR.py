@@ -52,7 +52,7 @@ def LR(stra):
             print(X.shape)
             y = torch.from_numpy(np.ones(len(llhs))).float().to('cpu')
             print(y.shape)
-            print(y)
+            # print(y)
             print('Y')
                 
             dim = 16 if stra=='cite' else 8

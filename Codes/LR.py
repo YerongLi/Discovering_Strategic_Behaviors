@@ -7,7 +7,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 import os
-from utils import
+from utils import *
 
 class LogisticRegression(nn.Module):
     

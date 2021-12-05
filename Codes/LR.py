@@ -8,6 +8,7 @@ import torch.nn.functional as F
 import torch.optim as optim
 import os
 from utils import *
+import tqdm
 
 class LogisticRegression(nn.Module):
     

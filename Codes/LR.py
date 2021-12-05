@@ -7,6 +7,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 import os
+from utils import
 
 class LogisticRegression(nn.Module):
     
@@ -44,10 +45,11 @@ def LR(stra):
         for author, llhs in exp_input:
                 
             X = torch.from_numpy(llhs/np.sum(llhs,axis=1).reshape(-1,1)).float().to('cpu')
-            print('X')
+            print(tokgreen('X'))
             print(X.shape)
             y = torch.from_numpy(np.ones(len(llhs))).float().to('cpu')
             print(y.shape)
+            print('Y')
                 
             dim = 16 if stra=='cite' else 8
             model = LogisticRegression(dim, 'cpu')

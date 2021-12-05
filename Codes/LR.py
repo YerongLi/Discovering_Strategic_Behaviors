@@ -43,7 +43,7 @@ def LR(stra):
         exp_input = zip(a_active, a_edgellh)      
         results = {}
         # for author, llhs in exp_input.items():
-        for author, llhs in exp_input:
+        for author, llhs in exp_input[:100]:
                 
             X = torch.from_numpy(llhs/np.sum(llhs,axis=1).reshape(-1,1)).float().to('cpu')
             y = torch.from_numpy(np.ones(len(llhs))).float().to('cpu')

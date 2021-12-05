@@ -37,7 +37,7 @@ def LR(stra):
     for fold in range(Folds):
         # exp_input = pickle.load(open(f'/home/yuxinx2/DBLP_exp/LR/{stra}/{year}_{stra}_input_{fold}.pkl','rb'))
 
-        exp_input = pickle.load(open(f'{os.getenv("HOME")}/yerong/Discovering_Strategic_Behaviors/Dynamic_Dual_Attention_Networks/a_cite_inputs_2018.pkl','rb'))
+        exp_input = pickle.load(open(f'{os.getenv("HOME")}/yerong/Discovering_Strategic_Behaviors/Dynamic_Dual_Attention_Networks/cite_input/a_cite_inputs_2018.pkl','rb'))
             
         results = {}
         for author, llhs in exp_input.items():

@@ -43,7 +43,7 @@ def LR(stra):
         exp_input = zip(a_active, a_edgellh)      
         results = {}
         # for author, llhs in exp_input.items():
-        for idx, (author, llhs) in enumerate(exp_input):
+        for idx, (author, llhs) in tqdm.tdqm(enumerate(exp_input)):
             if idx > 1:
                 break
                 
@@ -55,8 +55,8 @@ def LR(stra):
             optimizer = optim.Adam(model.parameters(), lr=0.5, weight_decay=5e-4)
                 
             prev_loss = np.inf
-            # while (True):
-            for i in tqdm.tqdm(range(10)):
+            while (True):
+            # for i in tqdm.tqdm(range(10)):
                 model.train()
                 curr_loss = model.loss(X, y)
                 curr_loss.backward()

@@ -6,7 +6,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
-
+import os
 
 class LogisticRegression(nn.Module):
     
@@ -35,7 +35,9 @@ class LogisticRegression(nn.Module):
 def LR(stra):
     
     for fold in range(Folds):
-        exp_input = pickle.load(open(f'/home/yuxinx2/DBLP_exp/LR/{stra}/{year}_{stra}_input_{fold}.pkl','rb'))
+        # exp_input = pickle.load(open(f'/home/yuxinx2/DBLP_exp/LR/{stra}/{year}_{stra}_input_{fold}.pkl','rb'))
+
+        exp_input = pickle.load(open(f'{os.getenv("HOME")}/yerong/Discovering_Strategic_Behaviors/Dynamic_Dual_Attention_Networks/a_cite_inputs_2018.pkl','rb'))
             
         results = {}
         for author, llhs in exp_input.items():
@@ -64,7 +66,8 @@ def LR(stra):
         
 year = 2015
 Folds = 5
-Strategies = ['cite', 'pub']
+Strategies = ['cite']
+# Strategies = ['cite', 'pub']
             
 if __name__ == "__main__":
     threads = []

@@ -18,10 +18,10 @@ class Trainer:
         
         self.dataset = DBLPDataset(year, nstrategy, strategy, rank, worldsize, device, path)
         
-        # self.c_model = StaticAttentionModule(in_dim=nfeat, out_dim=int(nfeat/2), alpha=alpha, device=device)
-        # self.c_optimizer = optim.Adam(self.c_model.parameters(), lr=c_lr, weight_decay=weight_decay)
-        # self.a_model = DynamicAttentionModule(in_dim=nfeat, out_dim=int(nfeat/2), alpha=alpha, device=device)
-        # self.a_optimizer = optim.Adam(self.a_model.parameters(), lr=a_lr, weight_decay=weight_decay)
+        self.c_model = StaticAttentionModule(in_dim=nfeat, out_dim=int(nfeat/2), alpha=alpha, device=device)
+        self.c_optimizer = optim.Adam(self.c_model.parameters(), lr=c_lr, weight_decay=weight_decay)
+        self.a_model = DynamicAttentionModule(in_dim=nfeat, out_dim=int(nfeat/2), alpha=alpha, device=device)
+        self.a_optimizer = optim.Adam(self.a_model.parameters(), lr=a_lr, weight_decay=weight_decay)
         
         self.nstrategy = nstrategy
         self.device = device

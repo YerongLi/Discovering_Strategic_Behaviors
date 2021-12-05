@@ -17,5 +17,4 @@ MIN_NROUND=1
 
 mkdir ${FPATH}/run # the directory to store training logs
 mkdir ${FPATH}/${STRATEGY}_result # the directory to store training outputs
-
-CUDA_VISIBLE_DEVICES=4,5,6,7 python3 ${FPATH}/Model/MultiHeteroAtt.py --path ${FPATH} --start_year ${START_YEAR} --end_year ${END_YEAR} --c_batchsize ${C_BATCHSIZE} --a_batchsize ${A_BATCHSIZE} --nstrategy ${NSTRATEGY} --strategy ${STRATEGY} --max_nround ${MAX_NROUND} --min_nround ${MIN_NROUND}
+python3 ${FPATH}/Model/MultiHeteroAtt.py --path ${FPATH} --start_year ${START_YEAR} --end_year ${END_YEAR} --c_batchsize ${C_BATCHSIZE} --a_batchsize ${A_BATCHSIZE} --nstrategy ${NSTRATEGY} --strategy ${STRATEGY} --max_nround ${MAX_NROUND} --min_nround ${MIN_NROUND}

@@ -44,8 +44,8 @@ def LR(stra):
         results = {}
         # for author, llhs in exp_input.items():
         for idx, (author, llhs) in tqdm.tqdm(enumerate(exp_input)):
-            if idx > 1:
-                break
+            # if idx > 1:
+            #     break
                 
             X = torch.from_numpy(llhs/np.sum(llhs,axis=1).reshape(-1,1)).float().to('cpu')
             y = torch.from_numpy(np.ones(len(llhs))).float().to('cpu')

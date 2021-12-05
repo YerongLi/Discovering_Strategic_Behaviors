@@ -26,6 +26,9 @@ class LogisticRegression(nn.Module):
     def loss(self, X, y):
         
         output = self.forward(X)
+        print(tokblue('X y'))
+        print(X)
+        print(y)
         return self.BCELoss(output.squeeze(), y)
     
     def softmax(self):

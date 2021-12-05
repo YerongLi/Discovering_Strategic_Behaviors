@@ -52,7 +52,7 @@ def LR(stra):
             optimizer = optim.Adam(model.parameters(), lr=0.5, weight_decay=5e-4)
                 
             prev_loss = np.inf
-            while True:
+            for i in tqdm.tqdm(range(10)):
                 model.train()
                 curr_loss = model.loss(X, y)
                 curr_loss.backward()
@@ -63,7 +63,7 @@ def LR(stra):
                         
             results[author] = model.softmax()
                 
-        pickle.dump(results, open(f'/home/yuxinx2/DBLP_exp/LR/{stra}_result/{stra}_result_{year}_{fold}.pkl','wb'), -1)
+        pickle.dump(results, open(f'./yerong.pkl','wb'), -1)
 
         
 year = 2015

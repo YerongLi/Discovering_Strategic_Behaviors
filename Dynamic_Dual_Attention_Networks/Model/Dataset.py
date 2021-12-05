@@ -33,6 +33,8 @@ class DBLPDataset:
         self.a_active = a_active
         print(tokgreen('a_active'))
         print(self.a_active)
+        print(tokblue('a_edgellh'))
+        print(a_edgellh)
         self.a_position = a_position
         self.a_latest_dists = pickle.load(open(f'{self.path}/{self.strategy}_input/a_latest_{self.strategy}_dists_{self.year-1}.pkl','rb'))
         da_dist = np.array([self.a_latest_dists[a] for a in self.a_active])

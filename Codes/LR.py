@@ -26,10 +26,7 @@ class LogisticRegression(nn.Module):
     def loss(self, X, y):
         
         output = self.forward(X)
-        print(tokblue('X y'))
-        print(output.squeeze())
-        print(y)
-        return self.BCELoss(output.squeeze(), y)
+        return self.BCELoss(output.squeeze(), y.squeeze())
     
     def softmax(self):
         
@@ -48,12 +45,7 @@ def LR(stra):
         for author, llhs in exp_input:
                 
             X = torch.from_numpy(llhs/np.sum(llhs,axis=1).reshape(-1,1)).float().to('cpu')
-            print(tokgreen('X'))
-            print(X.shape)
             y = torch.from_numpy(np.ones(len(llhs))).float().to('cpu')
-            print(y.shape)
-            # print(y)
-            print('Y')
                 
             dim = 16 if stra=='cite' else 8
             model = LogisticRegression(dim, 'cpu')

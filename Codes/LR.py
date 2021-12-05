@@ -53,6 +53,7 @@ def LR(stra):
             optimizer = optim.Adam(model.parameters(), lr=0.5, weight_decay=5e-4)
                 
             prev_loss = np.inf
+            # while (True):
             for i in tqdm.tqdm(range(10)):
                 model.train()
                 curr_loss = model.loss(X, y)
@@ -74,11 +75,11 @@ Strategies = ['cite']
             
 if __name__ == "__main__":
     threads = []
-    for stra in Strategies:
-        threads.append(threading.Thread(target=LR, args=(stra,)))
- 
-    for thread in threads:
-        thread.start()
+    # for stra in Strategies:
+        # threads.append(threading.Thread(target=LR, args=(stra,)))
+    LR(Strategies[0])
+    # for thread in threads:
+        # thread.start()
   
-    for thread in threads:
-        thread.join()
+    # for thread in threads:
+        # thread.join()

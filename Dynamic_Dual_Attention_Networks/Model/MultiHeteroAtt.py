@@ -128,7 +128,7 @@ def init_process(rank, year, args):
     torch.manual_seed(seed)
     torch.cuda.manual_seed(seed)
     
-    master_ip, master_port = '127.0.0.1', '12345'
+    master_ip, master_port = '127.0.0.1', '12346'
     init_method = "tcp://{}:{}".format(master_ip, master_port)
 
     dist.init_process_group(backend='nccl', init_method=init_method, world_size=n_gpus, rank=rank)

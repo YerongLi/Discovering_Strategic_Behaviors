@@ -17,11 +17,18 @@ There are three files in the ``` cite_input``` folder:
 
 ```a_cite_inputs_2018.pkl```: <br /> 
 - a_active - the list of author_id of authors who produced contents in 2018;
+  a_active array(['C101174675', 'C101661964', 'C1019737445', ..., 'C986557658',
+       'C990196822', 'C995589320'], dtype='<U11') 297662
 - a_position - the dictionary of (author_id, the index of author_id in a_active); 
 - ac_adj - the array of \[author_id, content_id\] sorted in the order of a_active where author_id is an author of content_id;
+  array([['A100004360', 'A100026995', 'A1000537532', ..., 'A99975585','A99975585', 'A99975585'],
+       ['C2894471651', 'C2888177067', 'C2766675930', ..., 'C2756720074','C2787540588', 'C2823072336']], dtype='<U11')
+  2 * 447642
 - a_emb - the array of author embeddings in 2018 sorted in the order of a_active;
 - da_emb - the array of author embeddings in 2017 sorted in the order of a_active;
 - a_edgellh - the list of the log likelihoods of forming author-author citation links sorted in the order of a_active.
+  len(a_edgellh)
+  297662
 
 ```a_latest_cite_dists_2017.pkl```: <br />  
 - a_latest_dists - the dictionary of (author_id, author_id's strategy distribution in 2017).

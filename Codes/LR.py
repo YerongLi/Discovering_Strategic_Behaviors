@@ -43,7 +43,7 @@ def LR(stra):
         exp_input = zip(a_active, a_edgellh)      
         results = {}
         # for author, llhs in exp_input.items():
-        for idx, (author, llhs) in tqdm.tqdm(enumerate(exp_input)):
+        for idx, (author, llhs) in tqdm.tqdm(enumerate(exp_input[:50000])):
             # if idx > 1:
             #     break
                 

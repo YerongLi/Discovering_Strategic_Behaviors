@@ -37,15 +37,15 @@ def DMM(thread_id):
     
     # a_active, _, _, _, _, a_edgellh = pickle.load(open(f'{fpath}_exp/DDAN/{stra}_input/a_{stra}_inputs_{year}_{thread_id}', 'rb'))
     
-    M = len(a_edgellh)
-    M = 50000
+    M_= len(a_edgellh)
+    M = 500
     N = np.sum([len(each) for each in a_edgellh])
     
     extra = 1
     Topics = np.full((K,L), 1/(L+extra)) + np.identity(K)*(extra/(L+extra))
     topic_norm = M-1 + alpha*K
     
-    nodes_assign = np.random.randint(0,K,size=M)
+    nodes_assign = np.random.randint(0,K,size=M_)
     topic, count = np.unique(nodes_assign, return_counts=True)
     topics_assign_count = np.zeros(K, dtype=np.int32)
     topics_assign_count[topic] = count

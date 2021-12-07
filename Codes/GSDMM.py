@@ -6,13 +6,14 @@ import threading
 import numpy as np
 from scipy import stats
 from sklearn.metrics import mean_squared_error
+import os
 
 seed = 1
 np.random.seed(seed)
 
 stra = 'cite'
 year = 2010 #left: 2000, 2005, 2010, 2015, 2018
-Epochs = 200
+Epochs = 10
 Threshold = 5e-4
 
 folds = 5
@@ -31,8 +32,9 @@ beta = 1/L
 def DMM(thread_id):
     
     logging.info(f'Start Fold {thread_id}')
+    a_active, a_position, ac_adj, a_emb, da_emb, a_edgellh = pickle.load(open(f'{os.getenv("HOME")}/yerong/Discovering_Strategic_Behaviors/Dynamic_Dual_Attention_Networks/cite_input/a_cite_inputs_2018.pkl','rb'))
     
-    a_active, _, _, _, _, a_edgellh = pickle.load(open(f'{fpath}_exp/DDAN/{stra}_input/a_{stra}_inputs_{year}_{thread_id}', 'rb'))
+    # a_active, _, _, _, _, a_edgellh = pickle.load(open(f'{fpath}_exp/DDAN/{stra}_input/a_{stra}_inputs_{year}_{thread_id}', 'rb'))
     
     M = len(a_edgellh)
     N = np.sum([len(each) for each in a_edgellh])
@@ -96,7 +98,7 @@ def DMM(thread_id):
     results = {}
     for i, a in enumerate(a_active):
         results[a] = Topics[nodes_assign[i]]
-    pickle.dump((results, Topics, nodes_assign, topics_assign_count, edges_assign, strategies_assign_count), open(f'{fpath}_exp/DMM/{stra}_result/{stra}_result_{year}_{thread_id}.pkl', 'wb'), -1)
+    pickle.dump((results, Topics, nodes_assign, topics_assign_count, edges_assign, strategies_assign_count), open(f'./{stra}_result/{stra}_result_{year}_{thread_id}.pkl', 'wb'), -1)
     
     logging.info(f"Finish Fold {thread_id}, Time {time.time()-start}")
     

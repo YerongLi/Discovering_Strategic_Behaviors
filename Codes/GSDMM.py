@@ -32,7 +32,7 @@ beta = 1/L
 def DMM(thread_id):
     
     logging.info(f'Start Fold {thread_id}')
-    a_active, a_position, ac_adj, a_emb, da_emb, a_edgellh = pickle.load(open(f'{os.getenv("HOME")}/yerong/Discovering_Strategic_Behaviors/Dynamic_Dual_Attention_Networks/cite_input/a_cite_inputs_2018.pkl','rb'))
+    a_active, a_position, ac_adj, a_emb, da_emb, a_edgellh = pickle.load(open(f'{os.getenv("HOME")}/Discovering_Strategic_Behaviors/Dynamic_Dual_Attention_Networks/cite_input/a_cite_inputs_2018.pkl','rb'))
     
     # a_active, _, _, _, _, a_edgellh = pickle.load(open(f'{fpath}_exp/DDAN/{stra}_input/a_{stra}_inputs_{year}_{thread_id}', 'rb'))
     

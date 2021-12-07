@@ -40,7 +40,7 @@ def LR(stra):
         # exp_input = pickle.load(open(f'/home/yuxinx2/DBLP_exp/LR/{stra}/{year}_{stra}_input_{fold}.pkl','rb'))
 
         a_active, a_position, ac_adj, a_emb, da_emb, a_edgellh = pickle.load(open(f'{os.getenv("HOME")}/Discovering_Strategic_Behaviors/Dynamic_Dual_Attention_Networks/cite_input/a_cite_inputs_2018.pkl','rb'))
-        exp_input = zip(a_active, a_edgellh)      
+        exp_input = list(zip(a_active, a_edgellh))     
         results = {}
         # for author, llhs in exp_input.items():
         for idx, (author, llhs) in tqdm.tqdm(enumerate(exp_input[:50000])):

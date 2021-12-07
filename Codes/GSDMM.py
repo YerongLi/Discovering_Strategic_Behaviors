@@ -6,6 +6,7 @@ import threading
 import numpy as np
 from scipy import stats
 from sklearn.metrics import mean_squared_error
+import tqdm
 import os
 
 seed = 1
@@ -65,7 +66,7 @@ def DMM(thread_id):
     start = time.time()
     while abs(diff)>Threshold and epoch<Epochs:
     
-        for node in range(M):
+        for node in tqdm.tqdm(range(M)):
         
             old_topic = nodes_assign[node]
             topics_assign_count[old_topic] -= 1

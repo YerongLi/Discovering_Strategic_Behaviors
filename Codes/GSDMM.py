@@ -17,8 +17,8 @@ year = 2010 #left: 2000, 2005, 2010, 2015, 2018
 Epochs = 2
 Threshold = 5e-4
 
-folds = 5
-thread_count = 5
+folds = 1
+thread_count = 1
 
 fpath = '/home/yuxinx2/DBLP'
 logging.basicConfig(level=logging.INFO,filename=f'./run/{stra}_{year}.log',filemode='a',format='%(asctime)s %(message)s',datefmt='%Y/%m/%d %I:%M:%S %p')
@@ -106,13 +106,13 @@ def DMM(thread_id):
     
 if __name__ == "__main__":
     threads = []
-    for i in range(thread_count):
-        threads.append(threading.Thread(target=DMM, args=(i,)))
- 
-    for i in range(thread_count):
-        threads[i].start()
+    # for i in range(thread_count):
+        # threads.append(threading.Thread(target=DMM, args=(i,)))
+    DMM(0)
+    # for i in range(thread_count):
+    #     threads[i].start()
   
-    for i in range(thread_count):
-        threads[i].join()
+    # for i in range(thread_count):
+    #     threads[i].join()
         
     logging.info(f'Finish Year {year}')

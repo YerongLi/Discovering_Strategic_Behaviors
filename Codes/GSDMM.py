@@ -13,7 +13,7 @@ np.random.seed(seed)
 
 stra = 'cite'
 year = 2010 #left: 2000, 2005, 2010, 2015, 2018
-Epochs = 10
+Epochs = 2
 Threshold = 5e-4
 
 folds = 5

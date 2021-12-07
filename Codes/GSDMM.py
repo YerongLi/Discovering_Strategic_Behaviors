@@ -20,7 +20,7 @@ folds = 5
 thread_count = 5
 
 fpath = '/home/yuxinx2/DBLP'
-logging.basicConfig(level=logging.INFO,filename=f'{fpath}_exp/DMM/run/{stra}_{year}.log',filemode='a',format='%(asctime)s %(message)s',datefmt='%Y/%m/%d %I:%M:%S %p')
+logging.basicConfig(level=logging.INFO,filename=f'./run/{stra}_{year}.log',filemode='a',format='%(asctime)s %(message)s',datefmt='%Y/%m/%d %I:%M:%S %p')
 logging.info(f'Start Year {year}')
 
 K = 16

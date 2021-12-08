@@ -25,7 +25,7 @@ logging.basicConfig(level=logging.INFO,filename=f'./run/{stra}_{year}.log',filem
 logging.info(f'Start Year {year}')
 
 K = 24
-L = 24
+L = 16
 alpha = 1/K
 beta = 1/L
 

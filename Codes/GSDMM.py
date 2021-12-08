@@ -24,8 +24,8 @@ fpath = '/home/yuxinx2/DBLP'
 logging.basicConfig(level=logging.INFO,filename=f'./run/{stra}_{year}.log',filemode='a',format='%(asctime)s %(message)s',datefmt='%Y/%m/%d %I:%M:%S %p')
 logging.info(f'Start Year {year}')
 
-K = 16
-L = 16
+K = 24
+L = 24
 alpha = 1/K
 beta = 1/L
 
@@ -67,7 +67,6 @@ def DMM(thread_id):
     start = time.time()
     while abs(diff)>Threshold and epoch<Epochs:
     
-        for node in tqdm.tqdm(range(M)):
         
             old_topic = nodes_assign[node]
             topics_assign_count[old_topic] -= 1
@@ -97,10 +96,11 @@ def DMM(thread_id):
         logging.info(f'Fold {thread_id}, Epoch {epoch}, Diff {diff:.8f}')
         epoch += 1
         
+        
     results = {}
     for i, a in enumerate(a_active):
         results[a] = Topics[nodes_assign[i]]
-    pickle.dump((results, Topics, nodes_assign, topics_assign_count, edges_assign, strategies_assign_count), open(f'./{stra}_result/{stra}_result_{year}_{thread_id}.pkl', 'wb'), -1)
+    pickle.dump((results, Topics, nodes_assign, topics_assign_count, edges_assign, strategies_assign_count), open(f'./{stra}_result/{stra}_result_{year}_{thread_id}yerong2.pkl', 'wb'), -1)
     
     logging.info(f"Finish Fold {thread_id}, Time {time.time()-start}")
     

@@ -38,7 +38,7 @@ def DMM(thread_id):
     # a_active, _, _, _, _, a_edgellh = pickle.load(open(f'{fpath}_exp/DDAN/{stra}_input/a_{stra}_inputs_{year}_{thread_id}', 'rb'))
     
     M_= len(a_edgellh)
-    M = 500
+    M = 30000
     N = np.sum([len(each) for each in a_edgellh])
     
     extra = 1

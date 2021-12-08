@@ -67,6 +67,7 @@ def DMM(thread_id):
     start = time.time()
     while abs(diff)>Threshold and epoch<Epochs:
     
+        for node in tqdm.tqdm(range(M)):
         
             old_topic = nodes_assign[node]
             topics_assign_count[old_topic] -= 1

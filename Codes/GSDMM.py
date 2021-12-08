@@ -24,8 +24,8 @@ fpath = '/home/yuxinx2/DBLP'
 logging.basicConfig(level=logging.INFO,filename=f'./run/{stra}_{year}.log',filemode='a',format='%(asctime)s %(message)s',datefmt='%Y/%m/%d %I:%M:%S %p')
 logging.info(f'Start Year {year}')
 
-K = 24
-L = 24
+K = 16
+L = 16
 alpha = 1/K
 beta = 1/L
 
